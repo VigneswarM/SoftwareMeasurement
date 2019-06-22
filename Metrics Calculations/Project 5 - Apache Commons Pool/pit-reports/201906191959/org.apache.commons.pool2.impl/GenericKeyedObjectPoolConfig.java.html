@@ -1,0 +1,2907 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>GenericKeyedObjectPoolConfig.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_1'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/*</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_2'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Licensed to the Apache Software Foundation (ASF) under one or more</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_3'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * contributor license agreements.  See the NOTICE file distributed with</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_4'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * this work for additional information regarding copyright ownership.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_5'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * The ASF licenses this file to You under the Apache License, Version 2.0</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_6'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * (the &#34;License&#34;); you may not use this file except in compliance with</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_7'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * the License.  You may obtain a copy of the License at</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_8'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_9'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *      http://www.apache.org/licenses/LICENSE-2.0</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_10'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_11'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Unless required by applicable law or agreed to in writing, software</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_12'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * distributed under the License is distributed on an &#34;AS IS&#34; BASIS,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_13'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_14'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * See the License for the specific language governing permissions and</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_15'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * limitations under the License.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_16'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_17'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package org.apache.commons.pool2.impl;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_18'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_19'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_20'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * A simple &#34;struct&#34; encapsulating the configuration for a</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_21'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * {@link GenericKeyedObjectPool}.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_22'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_23'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#60;p&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_24'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * This class is not thread-safe; it is only intended to be used to provide</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_25'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * attributes used when creating a pool.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_26'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#60;/p&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_27'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_28'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @param &#60;T&#62; Type of element pooled.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_29'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @since 2.0</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_30'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_31'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class GenericKeyedObjectPoolConfig&#60;T&#62; extends BaseObjectPoolConfig&#60;T&#62; {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_32'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_33'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_34'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * The default value for the {@code maxTotalPerKey} configuration attribute.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_35'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @see GenericKeyedObjectPool#getMaxTotalPerKey()</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_36'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_37'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static final int DEFAULT_MAX_TOTAL_PER_KEY = 8;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_38'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_39'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_40'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * The default value for the {@code maxTotal} configuration attribute.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_41'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @see GenericKeyedObjectPool#getMaxTotal()</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_42'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_43'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static final int DEFAULT_MAX_TOTAL = -1;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_44'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_45'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_46'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * The default value for the {@code minIdlePerKey} configuration attribute.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_47'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @see GenericKeyedObjectPool#getMinIdlePerKey()</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_48'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_49'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static final int DEFAULT_MIN_IDLE_PER_KEY = 0;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_50'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_51'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_52'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * The default value for the {@code maxIdlePerKey} configuration attribute.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_53'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @see GenericKeyedObjectPool#getMaxIdlePerKey()</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_54'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_55'/>
+55
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_55'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static final int DEFAULT_MAX_IDLE_PER_KEY = 8;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_56'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_57'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_58'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private int minIdlePerKey = DEFAULT_MIN_IDLE_PER_KEY;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_59'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_60'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private int maxIdlePerKey = DEFAULT_MAX_IDLE_PER_KEY;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_61'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_62'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private int maxTotalPerKey = DEFAULT_MAX_TOTAL_PER_KEY;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_63'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_64'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private int maxTotal = DEFAULT_MAX_TOTAL;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_65'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_66'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_67'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Create a new configuration with default settings.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_68'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_69'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    public GenericKeyedObjectPoolConfig() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_70'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_71'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_72'/>
+72
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_72'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_73'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Get the value for the {@code maxTotal} configuration attribute</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_74'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * for pools created with this configuration instance.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_75'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_76'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return  The current setting of {@code maxTotal} for this</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_77'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *          configuration instance</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_78'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_79'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @see GenericKeyedObjectPool#getMaxTotal()</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_80'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_81'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getMaxTotal() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_82'/>
+82
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_82'>1</a>
+<span>
+
+1. getMaxTotal : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return maxTotal;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_83'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_84'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_85'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_86'/>
+86
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_86'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Set the value for the {@code maxTotal} configuration attribute for</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_87'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * pools created with this configuration instance.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_88'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_89'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param maxTotal The new setting of {@code maxTotal}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_90'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *        for this configuration instance</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_91'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_92'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @see GenericKeyedObjectPool#setMaxTotal(int)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_93'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_94'/>
+94
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_94'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setMaxTotal(final int maxTotal) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_95'/>
+95
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_95'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.maxTotal = maxTotal;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_96'/>
+96
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_96'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_97'/>
+97
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_97'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_98'/>
+98
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_98'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_99'/>
+99
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_99'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Get the value for the {@code maxTotalPerKey} configuration attribute</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_100'/>
+100
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_100'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * for pools created with this configuration instance.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_101'/>
+101
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_101'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_102'/>
+102
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_102'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return  The current setting of {@code maxTotalPerKey} for this</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_103'/>
+103
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_103'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *          configuration instance</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_104'/>
+104
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_104'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_105'/>
+105
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_105'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @see GenericKeyedObjectPool#getMaxTotalPerKey()</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_106'/>
+106
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_106'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_107'/>
+107
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_107'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getMaxTotalPerKey() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_108'/>
+108
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_108'>1</a>
+<span>
+
+1. getMaxTotalPerKey : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return maxTotalPerKey;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_109'/>
+109
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_109'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_110'/>
+110
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_110'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_111'/>
+111
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_111'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_112'/>
+112
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_112'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Set the value for the {@code maxTotalPerKey} configuration attribute for</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_113'/>
+113
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_113'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * pools created with this configuration instance.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_114'/>
+114
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_114'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_115'/>
+115
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_115'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param maxTotalPerKey The new setting of {@code maxTotalPerKey}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_116'/>
+116
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_116'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *        for this configuration instance</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_117'/>
+117
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_117'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_118'/>
+118
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_118'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @see GenericKeyedObjectPool#setMaxTotalPerKey(int)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_119'/>
+119
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_119'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_120'/>
+120
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_120'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setMaxTotalPerKey(final int maxTotalPerKey) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_121'/>
+121
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_121'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.maxTotalPerKey = maxTotalPerKey;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_122'/>
+122
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_122'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_123'/>
+123
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_123'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_124'/>
+124
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_124'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_125'/>
+125
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_125'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Get the value for the {@code minIdlePerKey} configuration attribute</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_126'/>
+126
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_126'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * for pools created with this configuration instance.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_127'/>
+127
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_127'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_128'/>
+128
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_128'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return  The current setting of {@code minIdlePerKey} for this</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_129'/>
+129
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_129'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *          configuration instance</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_130'/>
+130
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_130'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_131'/>
+131
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_131'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @see GenericKeyedObjectPool#getMinIdlePerKey()</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_132'/>
+132
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_132'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_133'/>
+133
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_133'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getMinIdlePerKey() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_134'/>
+134
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_134'>1</a>
+<span>
+
+1. getMinIdlePerKey : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return minIdlePerKey;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_135'/>
+135
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_135'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_136'/>
+136
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_136'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_137'/>
+137
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_137'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_138'/>
+138
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_138'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Set the value for the {@code minIdlePerKey} configuration attribute for</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_139'/>
+139
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_139'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * pools created with this configuration instance.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_140'/>
+140
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_140'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_141'/>
+141
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_141'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param minIdlePerKey The new setting of {@code minIdlePerKey}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_142'/>
+142
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_142'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *        for this configuration instance</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_143'/>
+143
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_143'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_144'/>
+144
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_144'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @see GenericKeyedObjectPool#setMinIdlePerKey(int)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_145'/>
+145
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_145'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_146'/>
+146
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_146'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setMinIdlePerKey(final int minIdlePerKey) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_147'/>
+147
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_147'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.minIdlePerKey = minIdlePerKey;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_148'/>
+148
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_148'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_149'/>
+149
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_149'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_150'/>
+150
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_150'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_151'/>
+151
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_151'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Get the value for the {@code maxIdlePerKey} configuration attribute</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_152'/>
+152
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_152'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * for pools created with this configuration instance.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_153'/>
+153
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_153'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_154'/>
+154
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_154'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return  The current setting of {@code maxIdlePerKey} for this</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_155'/>
+155
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_155'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *          configuration instance</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_156'/>
+156
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_156'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_157'/>
+157
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_157'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @see GenericKeyedObjectPool#getMaxIdlePerKey()</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_158'/>
+158
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_158'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_159'/>
+159
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_159'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getMaxIdlePerKey() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_160'/>
+160
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_160'>1</a>
+<span>
+
+1. getMaxIdlePerKey : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return maxIdlePerKey;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_161'/>
+161
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_161'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_162'/>
+162
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_162'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_163'/>
+163
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_163'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_164'/>
+164
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_164'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Set the value for the {@code maxIdlePerKey} configuration attribute for</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_165'/>
+165
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_165'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * pools created with this configuration instance.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_166'/>
+166
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_166'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_167'/>
+167
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_167'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param maxIdlePerKey The new setting of {@code maxIdlePerKey}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_168'/>
+168
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_168'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *        for this configuration instance</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_169'/>
+169
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_169'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_170'/>
+170
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_170'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @see GenericKeyedObjectPool#setMaxIdlePerKey(int)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_171'/>
+171
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_171'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_172'/>
+172
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_172'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setMaxIdlePerKey(final int maxIdlePerKey) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_173'/>
+173
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_173'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.maxIdlePerKey = maxIdlePerKey;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_174'/>
+174
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_174'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_175'/>
+175
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_175'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_176'/>
+176
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_176'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @SuppressWarnings(&#34;unchecked&#34;)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_177'/>
+177
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_177'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_178'/>
+178
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_178'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public GenericKeyedObjectPoolConfig&#60;T&#62; clone() {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_179'/>
+179
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_179'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        try {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_180'/>
+180
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_180'>1</a>
+<span>
+
+1. clone : mutated return of Object value for org/apache/commons/pool2/impl/GenericKeyedObjectPoolConfig::clone to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
+
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            return (GenericKeyedObjectPoolConfig&#60;T&#62;) super.clone();</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_181'/>
+181
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_181'></a>
+<span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        } catch (final CloneNotSupportedException e) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_182'/>
+182
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_182'></a>
+<span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>            throw new AssertionError(); // Can&#39;t happen</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_183'/>
+183
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_183'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_184'/>
+184
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_184'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_185'/>
+185
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_185'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_186'/>
+186
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_186'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_187'/>
+187
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_187'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected void toStringAppendFields(final StringBuilder builder) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_188'/>
+188
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_188'>1</a>
+<span>
+
+1. toStringAppendFields : removed call to org/apache/commons/pool2/impl/BaseObjectPoolConfig::toStringAppendFields &rarr; NO_COVERAGE<br/>
+
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        super.toStringAppendFields(builder);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_189'/>
+189
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_189'></a>
+<span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        builder.append(&#34;, minIdlePerKey=&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_190'/>
+190
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_190'></a>
+<span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        builder.append(minIdlePerKey);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_191'/>
+191
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_191'></a>
+<span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        builder.append(&#34;, maxIdlePerKey=&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_192'/>
+192
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_192'></a>
+<span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        builder.append(maxIdlePerKey);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_193'/>
+193
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_193'></a>
+<span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        builder.append(&#34;, maxTotalPerKey=&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_194'/>
+194
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_194'></a>
+<span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        builder.append(maxTotalPerKey);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_195'/>
+195
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_195'></a>
+<span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        builder.append(&#34;, maxTotal=&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_196'/>
+196
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_196'></a>
+<span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        builder.append(maxTotal);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_197'/>
+197
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_197'></a>
+<span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@38f38fcf_198'/>
+198
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_198'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@38f38fcf_82'>82</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_82'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getMaxTotal<br/><b>Killed by : </b>org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithCglibProxy.testPassThroughMethods01(org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithCglibProxy)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@38f38fcf_108'>108</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_108'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getMaxTotalPerKey<br/><b>Killed by : </b>org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithCglibProxy.testPassThroughMethods01(org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithCglibProxy)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@38f38fcf_134'>134</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_134'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getMinIdlePerKey<br/><b>Killed by : </b>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testConstructors(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@38f38fcf_160'>160</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_160'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getMaxIdlePerKey<br/><b>Killed by : </b>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testFIFO(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@38f38fcf_180'>180</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_180'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>clone<br/><b>Killed by : </b>none</span></span> mutated return of Object value for org/apache/commons/pool2/impl/GenericKeyedObjectPoolConfig::clone to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@38f38fcf_188'>188</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@38f38fcf_188'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toStringAppendFields<br/><b>Killed by : </b>none</span></span> removed call to org/apache/commons/pool2/impl/BaseObjectPoolConfig::toStringAppendFields &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+
+<li class='mutator'>MATH_MUTATOR</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithJdkProxy.testPassThroughMethods02(org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithJdkProxy) (6 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testNegativeMaxTotalPerKey(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testToString(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testInvalidateFreesCapacity(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (659 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMaxWaitMultiThreaded(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (2017 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testClear(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testBaseBorrow(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMultipleReturn(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMaxTotalLRU(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (142 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testClientWaitStats(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (218 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testConstructors(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (16 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testKPOFAddObjectUsage(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (15 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testWhenExhaustedBlockClosePool(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (409 ms)</li><li>org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithJdkProxy.testAccessAfterReturn(org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithJdkProxy) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testEqualsIndiscernible(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testReturnToHead(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (1058 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testValidationFailureOnReturnFreesCapacity(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (504 ms)</li><li>org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithCglibProxy.testPassThroughMethods01(org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithCglibProxy) (0 ms)</li><li>org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithJdkProxy.testBorrowObject(org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithJdkProxy) (0 ms)</li><li>org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithCglibProxy.testBorrowObject(org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithCglibProxy) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMaxTotal(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (5 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testBaseInvalidateObject(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testSettersAndGetters(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (8 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testKPOFInvalidateObjectUsages(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (266 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMaxTotalWithThreads(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (4420 ms)</li><li>org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithJdkProxy.testPassThroughMethods01(org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithJdkProxy) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testNumActiveNumIdle2(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (15 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testValidationOnCreateOnly(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (3011 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testEviction2(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (7184 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMinIdle(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (627 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testLivenessPerKey(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (4 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testContructorEvictionConfig(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (605 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMaxTotalInvariant(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (1737 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testBaseAddObject(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (15 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testClearOldest(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (1858 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testEvictionOrder(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (2080 ms)</li><li>org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithCglibProxy.testAccessAfterReturn(org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithCglibProxy) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMaxTotalPerKey(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMakeObjectException(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (16 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testBorrowObjectFairness(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (2699 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testJmxRegistration(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testEviction(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (8119 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testBlockedKeyDoesNotBlockPool(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (1032 ms)</li><li>org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithCglibProxy.testPassThroughMethods02(org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithCglibProxy) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testKPOFCloseUsages(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testLIFO(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (8 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMaxTotalZero(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (4 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testEvictorVisiting(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (76 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testBaseBorrowReturn(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testBaseNumActiveNumIdle(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (22 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testBaseNumActiveNumIdle2(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (16 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testConcurrentInvalidate(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (12718 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testExceptionOnPassivateDuringReturn(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testBaseClear(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (16 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testConstructorNullFactory(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testExceptionOnActivateDuringBorrow(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (5 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testKPOFBorrowObjectUsages(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (16 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testThreaded1(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (5518 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMinIdleNoPreparePool(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (333 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testKPOFReturnObjectUsages(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (8 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMaxIdle(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (9 ms)</li><li>org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithCglibProxy.testAccessAfterInvalidate(org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithCglibProxy) (184 ms)</li><li>org.apache.commons.pool2.TestPoolUtils.testCheckMinIdleKeyedObjectPool(org.apache.commons.pool2.TestPoolUtils) (1543 ms)</li><li>org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithJdkProxy.testAccessAfterInvalidate(org.apache.commons.pool2.proxy.TestProxiedKeyedObjectPoolWithJdkProxy) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testExceptionOnDestroyDuringReturn(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testExceptionOnDestroyDuringBorrow(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testFIFO(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testClosedPoolBehavior(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMinIdleMaxTotalPerKey(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (955 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMaxActivePerKeyExceeded(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (109328 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testKPOFClearUsages(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testInvalidateWaiting(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (536 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMaxTotalPerKeyZero(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li><li>org.apache.commons.pool2.impl.TestGenericKeyedObjectPool.testMutable(org.apache.commons.pool2.impl.TestGenericKeyedObjectPool) (0 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.4.2
+
+</body>
+</html>
