@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Codec version_1.11</title>
+<title>Mutation_Coverage</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13115,15 +13115,11 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">scipy.stats</span>  <span class="k">as</span> <span class="nn">stats</span>
-
-<span class="n">df_collection</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;jacoco.csv&#39;</span><span class="p">,</span> <span class="n">error_bad_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13133,16 +13129,33 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_collection</span><span class="p">[</span><span class="s1">&#39;StatementCoverage&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="p">(</span><span class="n">df_collection</span><span class="p">[</span><span class="s1">&#39;LINE_COVERED&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">df_collection</span><span class="p">[</span><span class="s1">&#39;LINE_COVERED&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_collection</span><span class="p">[</span><span class="s1">&#39;LINE_MISSED&#39;</span><span class="p">]))</span> <span class="o">*</span> <span class="mi">100</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;mutations.csv&#39;</span><span class="p">,</span><span class="n">encoding</span> <span class="o">=</span> <span class="s2">&quot;ISO-8859-1&quot;</span><span class="p">,</span> <span class="n">error_bad_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Class&quot;</span><span class="p">,</span> <span class="s2">&quot;Package&quot;</span><span class="p">,</span> <span class="s2">&quot;gc1&quot;</span><span class="p">,</span> <span class="s2">&quot;gc2&quot;</span><span class="p">,</span><span class="s2">&quot;gc3&quot;</span><span class="p">,</span><span class="s2">&quot;Coverage&quot;</span><span class="p">,</span><span class="s2">&quot;gc4&quot;</span><span class="p">])</span>
+</pre></div>
 
-<span class="n">df_collection</span><span class="p">[</span><span class="s1">&#39;BranchCoverage&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="p">(</span><span class="n">df_collection</span><span class="p">[</span><span class="s1">&#39;BRANCH_COVERED&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">df_collection</span><span class="p">[</span><span class="s1">&#39;BRANCH_COVERED&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_collection</span><span class="p">[</span><span class="s1">&#39;BRANCH_MISSED&#39;</span><span class="p">]))</span> <span class="o">*</span> <span class="mi">100</span>
+    </div>
+</div>
+</div>
 
-<span class="n">df_collection</span><span class="p">[</span><span class="s1">&#39;CodeComplexity&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">df_collection</span><span class="p">[</span><span class="s1">&#39;COMPLEXITY_COVERED&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_collection</span><span class="p">[</span><span class="s1">&#39;COMPLEXITY_MISSED&#39;</span><span class="p">];</span>
-
-<span class="n">df_collection</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;CodeComplexity&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;StatementCoverage&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;gc1&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;gc2&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;gc3&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;gc4&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Package&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Package&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)[:</span><span class="n">x</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Package&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Package&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="n">x</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">else</span>  <span class="n">x</span><span class="p">[:</span><span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)[:</span><span class="n">x</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;.java&#39;</span><span class="p">)])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Class&#39;</span><span class="p">:</span><span class="s1">&#39;CLASS&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;Package&#39;</span><span class="p">:</span><span class="s1">&#39;PACKAGE&#39;</span><span class="p">},</span>
+                 <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13155,100 +13168,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[2]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fa393252518&gt;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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iooKxowZw9ixY3nhhRe4/fbb2bt3b4frplquqyxatIidO3e2PG5qamLevHmMGDGC0aNHM3HiRH7/+9/nrH65oqAX6aaWb6hlcvUqhs97gsnVq1i+oTbj13z++ed5/PHHefHFF3nllVf4wx/+wNChQ7tt0H/3u9+lrq6OV199lVdffZXf/e537Nmzp8u239zc3GWvnQkFvUg3tHxDLfMf3khtfSMO1NY3Mv/hjRmHfV1dHYMGDaJPnz4ADBo0iGXLlrFz506mTp3K1KlTAbj22mupqqqioqKCm266CYCf//zn7cqtXLmSSZMmccopp3DppZfS0NAAQHl5OTfeeCOTJk2iqqqKF198kenTp3Pcccdx9913t9TntttuY8KECYwZM6ZlO9u3b+ekk05i9uzZVFRUcM4559DY2MiyZcuoqanhiiuuYOzYsXz44Yf88pe/5I477mjZn6OOOorLLrsMgKVLl1JZWcno0aO54YYbALjrrrv49re/3bL9RYsWcd111wGwZMkSJk6cyNixY7nmmmtaQn3AgAF873vf49RTT+X555/nlltuYcKECYwePZo5c+bg7gCsW7eOMWPGMGnSJObOncvo0aOByJfD3LlzW/bznnvuyegzjMvdc/5v/PjxLtLTbdq0KeWypy94yofd8Hi7f6cveCqjOuzZs8dPPvlkHzFihF977bX+9NNPu7v7sGHDfPfu3S3l3n33XXd3P3DggJ955pn+8ssvtyu3e/duP+OMM7yhocHd3aurq/373/9+S7lf/OIX7u5+/fXXe2VlpX/wwQe+a9cuLy0tdXf3FStW+OzZs/3gwYPe3Nzs5513nj/zzDO+bds2Lygo8A0bNri7+6WXXuq/+tWv3N39zDPP9HXr1rm7+8svv+xjx46Nu5+1tbU+dOhQ37Vrlzc1NfnUqVP9kUce8V27dvlxxx3XUu7Tn/60P/fcc75p0yY///zzff/+/e7ufu211/rixYvd3R3wBx98sN174+5+5ZVX+mOPPebu7hUVFb5mzRp3d7/hhhu8oqLC3d3vuece/8EPfuDu7vv27fPx48f7W2+91a7O8f4+gBpPIWM1vFKkG9pZ39ip5akaMGAA69ev57nnnmP16tXMnDmT6urqduUeeughFi5cyIEDB6irq2PTpk2MGTOmVZm1a9eyadMmJk+eDMD+/fuZNGlSy/MXXHAB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
-"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_collection</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;CodeComplexity&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;BranchCoverage&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_collection</span><span class="p">[</span><span class="s1">&#39;CodeComplexity&#39;</span><span class="p">],</span> <span class="n">df_collection</span><span class="p">[</span><span class="s1">&#39;StatementCoverage&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_collection</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span><span class="s1">&#39;spearman&#39;</span><span class="p">)</span>
-
-<span class="n">df_collection</span><span class="p">[[</span><span class="s1">&#39;CodeComplexity&#39;</span><span class="p">,</span><span class="s1">&#39;StatementCoverage&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span><span class="s1">&#39;spearman&#39;</span><span class="p">)</span>
-
-<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df_collection</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="n">stats</span><span class="o">.</span><span class="n">spearmanr</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;StatementCoverage&#39;</span><span class="p">],</span> <span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;CodeComplexity&#39;</span><span class="p">])</span>
-
-<span class="n">df_collection</span><span class="p">[[</span><span class="s1">&#39;CodeComplexity&#39;</span><span class="p">,</span><span class="s1">&#39;BranchCoverage&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span><span class="s1">&#39;spearman&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[4]:</div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -13271,20 +13191,41 @@ div#notebook {
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>CodeComplexity</th>
-      <th>BranchCoverage</th>
+      <th>CLASS</th>
+      <th>PACKAGE</th>
+      <th>Coverage</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>CodeComplexity</th>
-      <td>1.000000</td>
-      <td>-0.272823</td>
+      <th>0</th>
+      <td>Clas</td>
+      <td>Packag</td>
+      <td>Coverage</td>
     </tr>
     <tr>
-      <th>BranchCoverage</th>
-      <td>-0.272823</td>
-      <td>1.000000</td>
+      <th>1</th>
+      <td>DoubleMetaphone</td>
+      <td>org.apache.commons.codec.language</td>
+      <td>KILLED</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>DoubleMetaphone</td>
+      <td>org.apache.commons.codec.language</td>
+      <td>KILLED</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>DoubleMetaphone</td>
+      <td>org.apache.commons.codec.language</td>
+      <td>KILLED</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>DoubleMetaphone</td>
+      <td>org.apache.commons.codec.language</td>
+      <td>KILLED</td>
     </tr>
   </tbody>
 </table>
@@ -13299,15 +13240,40 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_clean</span> <span class="o">=</span> <span class="n">df_collection</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="n">stats</span><span class="o">.</span><span class="n">spearmanr</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;BranchCoverage&#39;</span><span class="p">],</span> <span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;CodeComplexity&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;CLASS&#39;</span><span class="p">,</span><span class="s1">&#39;PACKAGE&#39;</span><span class="p">,</span><span class="s1">&#39;Coverage&#39;</span><span class="p">],</span><span class="n">as_index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Statment Coverage &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">((</span><span class="n">df_collection</span><span class="o">.</span><span class="n">LINE_COVERED</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="n">df_collection</span><span class="o">.</span><span class="n">LINE_MISSED</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">df_collection</span><span class="o">.</span><span class="n">LINE_COVERED</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+    </div>
+</div>
+</div>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Branch Coverage &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">((</span><span class="n">df_collection</span><span class="o">.</span><span class="n">BRANCH_COVERED</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="n">df_collection</span><span class="o">.</span><span class="n">BRANCH_MISSED</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">df_collection</span><span class="o">.</span><span class="n">BRANCH_COVERED</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Total_Mutant&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;KILLED&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO_COVERAGE&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;SURVIVED&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;TIMED_OUT&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Mutation_Score&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;KILLED&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;TIMED_OUT&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Total_Mutant&#39;</span><span class="p">])</span><span class="o">*</span><span class="mi">100</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;jacoco.csv&#39;</span><span class="p">,</span> <span class="n">error_bad_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df1</span><span class="p">[</span><span class="s1">&#39;CLASS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[</span><span class="s1">&#39;CLASS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span>  <span class="n">x</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">else</span>  <span class="n">x</span><span class="p">[:</span><span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)]</span> <span class="p">)</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;CLASS&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">columns</span>
 </pre></div>
 
     </div>
@@ -13320,14 +13286,514 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Statment Coverage 92.96675191815856
-Branch Coverage 90.61473486625997
-</pre>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;CLASS&#39;, &#39;INSTRUCTION_MISSED&#39;, &#39;INSTRUCTION_COVERED&#39;, &#39;BRANCH_MISSED&#39;,
+       &#39;BRANCH_COVERED&#39;, &#39;LINE_MISSED&#39;, &#39;LINE_COVERED&#39;, &#39;COMPLEXITY_MISSED&#39;,
+       &#39;COMPLEXITY_COVERED&#39;, &#39;METHOD_MISSED&#39;, &#39;METHOD_COVERED&#39;,
+       &#39;Statement Coverage&#39;, &#39;Branch Coverage&#39;, &#39;Code Complexity&#39;],
+      dtype=&#39;object&#39;)</pre>
 </div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_inner</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">right</span><span class="o">=</span><span class="n">df1</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;CLASS&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;CLASS&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df1</span><span class="p">[(</span><span class="o">~</span><span class="n">df1</span><span class="o">.</span><span class="n">CLASS</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">merged_inner</span><span class="o">.</span><span class="n">CLASS</span><span class="p">))</span><span class="o">&amp;</span><span class="p">(</span><span class="o">~</span><span class="n">df1</span><span class="o">.</span><span class="n">CLASS</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">merged_inner</span><span class="o">.</span><span class="n">CLASS</span><span class="p">))]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CLASS</th>
+      <th>INSTRUCTION_MISSED</th>
+      <th>INSTRUCTION_COVERED</th>
+      <th>BRANCH_MISSED</th>
+      <th>BRANCH_COVERED</th>
+      <th>LINE_MISSED</th>
+      <th>LINE_COVERED</th>
+      <th>COMPLEXITY_MISSED</th>
+      <th>COMPLEXITY_COVERED</th>
+      <th>METHOD_MISSED</th>
+      <th>METHOD_COVERED</th>
+      <th>Statement Coverage</th>
+      <th>Branch Coverage</th>
+      <th>Code Complexity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>Base32InputStream</td>
+      <td>0</td>
+      <td>24</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>3</td>
+      <td>100.0</td>
+      <td>0.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Base32OutputStream</td>
+      <td>0</td>
+      <td>24</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>3</td>
+      <td>100.0</td>
+      <td>0.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Base64InputStream</td>
+      <td>0</td>
+      <td>24</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>3</td>
+      <td>100.0</td>
+      <td>0.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Base64OutputStream</td>
+      <td>0</td>
+      <td>24</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>3</td>
+      <td>100.0</td>
+      <td>0.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>CharEncoding</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>100.0</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>DecoderException</td>
+      <td>0</td>
+      <td>16</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0</td>
+      <td>4</td>
+      <td>100.0</td>
+      <td>0.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>EncoderException</td>
+      <td>0</td>
+      <td>16</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0</td>
+      <td>4</td>
+      <td>100.0</td>
+      <td>0.0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>ResourceConstants</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">merged_inner</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">merged_inner</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CLASS</th>
+      <th>Coverage</th>
+      <th>KILLED</th>
+      <th>NON_VIABLE</th>
+      <th>NO_COVERAGE</th>
+      <th>SURVIVED</th>
+      <th>TIMED_OUT</th>
+      <th>Total_Mutant</th>
+      <th>Mutation_Score</th>
+      <th>INSTRUCTION_MISSED</th>
+      <th>INSTRUCTION_COVERED</th>
+      <th>BRANCH_MISSED</th>
+      <th>BRANCH_COVERED</th>
+      <th>LINE_MISSED</th>
+      <th>LINE_COVERED</th>
+      <th>COMPLEXITY_MISSED</th>
+      <th>COMPLEXITY_COVERED</th>
+      <th>METHOD_MISSED</th>
+      <th>METHOD_COVERED</th>
+      <th>Statement Coverage</th>
+      <th>Branch Coverage</th>
+      <th>Code Complexity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AbstractCaverphone</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>66.666667</td>
+      <td>0</td>
+      <td>24</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0</td>
+      <td>3</td>
+      <td>100.000000</td>
+      <td>100.000000</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>B64</td>
+      <td>0</td>
+      <td>16</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>17</td>
+      <td>100.000000</td>
+      <td>0</td>
+      <td>72</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0</td>
+      <td>13</td>
+      <td>0</td>
+      <td>7</td>
+      <td>0</td>
+      <td>5</td>
+      <td>100.000000</td>
+      <td>100.000000</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>BCodec</td>
+      <td>0</td>
+      <td>25</td>
+      <td>0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>29</td>
+      <td>86.206897</td>
+      <td>27</td>
+      <td>119</td>
+      <td>2</td>
+      <td>18</td>
+      <td>7</td>
+      <td>37</td>
+      <td>3</td>
+      <td>21</td>
+      <td>1</td>
+      <td>13</td>
+      <td>84.090909</td>
+      <td>90.000000</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Base32</td>
+      <td>0</td>
+      <td>201</td>
+      <td>0</td>
+      <td>10</td>
+      <td>14</td>
+      <td>1</td>
+      <td>226</td>
+      <td>89.380531</td>
+      <td>153</td>
+      <td>2550</td>
+      <td>13</td>
+      <td>64</td>
+      <td>17</td>
+      <td>157</td>
+      <td>14</td>
+      <td>42</td>
+      <td>1</td>
+      <td>12</td>
+      <td>90.229885</td>
+      <td>83.116883</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Base64</td>
+      <td>0</td>
+      <td>154</td>
+      <td>0</td>
+      <td>1</td>
+      <td>18</td>
+      <td>1</td>
+      <td>174</td>
+      <td>89.080460</td>
+      <td>30</td>
+      <td>1936</td>
+      <td>7</td>
+      <td>97</td>
+      <td>4</td>
+      <td>149</td>
+      <td>8</td>
+      <td>74</td>
+      <td>1</td>
+      <td>27</td>
+      <td>97.385621</td>
+      <td>93.269231</td>
+      <td>82</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Mutation_Score&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Statement Coverage&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mutation_Score&#39;</span><span class="p">,</span><span class="s1">&#39;Statement Coverage&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span><span class="s1">&#39;spearman&#39;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Mutation_Score&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Branch Coverage&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mutation_Score&#39;</span><span class="p">,</span><span class="s1">&#39;Branch Coverage&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span><span class="s1">&#39;spearman&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[18]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mutation_Score</th>
+      <th>Branch Coverage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Mutation_Score</th>
+      <td>1.000000</td>
+      <td>0.213251</td>
+    </tr>
+    <tr>
+      <th>Branch Coverage</th>
+      <td>0.213251</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
 </div>
 
 </div>
