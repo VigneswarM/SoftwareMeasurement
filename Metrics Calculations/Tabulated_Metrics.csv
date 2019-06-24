@@ -1,16 +1,16 @@
-Project_Name,Version ,commit id,bugs,Statement_Coverage,Branch_Coverage,LOC,Churned_Code,DD,Relative_Churned,,,,
-Project 1 - Apache Commons Configuration,2.3,43bd7dc,13,89.28756253,83.27510917,87708,982,0.148025,0.011,,,,
-Project 1 - Apache Commons Configuration,2.4,6543cb0,6,89.32934643,82.72532189,88158,10273,0.06805,0.1165,,,,
-Project 1 - Apache Commons Configuration,2.5,dc00a04,1,89.3258427,82.76969178,88011,1343,0.01136,0.01525,,,,
-Project 2 - Apache Commons Codec,1.1,e9da3d1,26,94.92230855,91.93154034,19269,153,1.349317557,0.00794,,,,
-Project 2 - Apache Commons Codec,1.11,9ceef22,6,92.96675192,90.61473487,21827,0,0.274888899,0,,,,
-Project 2 - Apache Commons Codec,1.12,0082c9e,3,92.557678,89.12947415,21827,1063,0.134174158,0.047542,,,,
-Project 3 - Apache Commons Collections,4.1,cb15716,30,85.14176245,78.07723911,64614,10743,0.030207039,0.166264,,,,
-Project 3 - Apache Commons Collections,4.2,483cbbb,16,87.43136059,81.19588303,66511,4957,0.015704165,0.074529,,,,
-Project 3 - Apache Commons Collections,4.3,77e37db,2,87.48857056,81.27548524,66820,833,0.001960404,0.012466,,,,
-Project 4 - Apache Commons Math,3.5,b3c5dae,62,89.62876,84.85221,208038,0,0.298022,0,,,,
-Project 4 - Apache Commons Math,3.6,95a9d35,19,89.62876,84.85221,221165,0,0.085908,0.07656,,,,
-Project 4 - Apache Commons Math,3.6.1,16abfe5,57,89.62876,84.85221,221258,31,0.257617,0.000692,,,,
-Project 5 - Apache Commons Pool,2.6,3b3ea3d,9,84.08408408,78.34101382,16485,0,0.54595,0,,,,
-Project 5 - Apache Commons Pool,2.6.1,d8524d2,2,84.30193721,78.81548975,16819,2109,0.118913,0.125394,,,,
-Project 5 - Apache Commons Pool,2.6.2,06de412,0,84.27378965,78.81548975,16846,155,0,0.00921,,,,
+Project_Name,Version ,commit id,bugs,Statement_Coverage,Branch_Coverage,LOC,Churned_Code
+Project 1 - Apache Commons Configuration,2.3,43bd7dc,13,89.28756253,83.27510917,87708,982
+Project 1 - Apache Commons Configuration,2.4,6543cb0,6,89.32934643,82.72532189,88158,10273
+Project 1 - Apache Commons Configuration,2.5,dc00a04,1,89.3258427,82.76969178,88011,1343
+Project 2 - Apache Commons Codec,1.1,e9da3d1,26,94.92230855,91.93154034,19269,153
+Project 2 - Apache Commons Codec,1.11,9ceef22,6,92.96675192,90.61473487,21827,0
+Project 2 - Apache Commons Codec,1.12,0082c9e,3,92.557678,89.12947415,21827,1063
+Project 3 - Apache Commons Collections,4.1,cb15716,30,85.14176245,78.07723911,64614,10743
+Project 3 - Apache Commons Collections,4.2,483cbbb,16,87.43136059,81.19588303,66511,4957
+Project 3 - Apache Commons Collections,4.3,77e37db,2,87.48857056,81.27548524,66820,833
+Project 4 - Apache Commons Math,3.5,b3c5dae,62,89.62876,84.85221,208038,0
+Project 4 - Apache Commons Math,3.6,95a9d35,19,89.62876,84.85221,221165,0
+Project 4 - Apache Commons Math,3.6.1,16abfe5,57,89.62876,84.85221,221258,31
+Project 5 - Apache Commons Pool,2.6,3b3ea3d,9,84.08408408,78.34101382,16485,0
+Project 5 - Apache Commons Pool,2.6.1,d8524d2,2,84.30193721,78.81548975,16819,2109
+Project 5 - Apache Commons Pool,2.6.2,06de412,0,84.27378965,78.81548975,16846,155
