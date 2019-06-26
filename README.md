@@ -139,5 +139,17 @@ Inorder to calculate this metric, defects after project release need to be count
 ****
 
 ## Correlation
+- [x] How we implemented in our project?
 
+Inorder to calculate the correlation between metrics,we have used open source software [Project Jupyter](https://en.wikipedia.org/wiki/Project_Jupyter), which supports various languages like Julia, Python, R etc.
+   - Firstly, data files(.xls) are loaded to jupyter binder server.
+   - Data file consists of the metrics data for which the correlation is being performed. Eg: For correlation of coverage and                complexity, the excel file contains three mandatory columns namely Statement coverage, Branch coverage & Code complexity
+   - Correlation is calculated using spearman method. Following are the commands used to perform the calculation
+   - ``` df = pd.read_csv('input.csv', error_bad_lines=False)```  _Loading input_
+   - ```df.plot(x='CodeComplexity', y='StatementCoverage', style='o')``` _Data can be plotted using this command_
+   - ``` df.corr(method ='spearman') ```   _Here df is the data frame_
+   - ```df[['CodeComplexity','StatementCoverage']].corr(method ='spearman')``` _Statement & Code coverage are columns containing                data_
+   
+ Similarly, results are caluclated for all other correlations. For mutation, input data is not as organised as coverage data, so formatting techniques are implemented in jupyter. All the calculations and results are uploaded in Metrics Calculations -->  Project Name --> Coorelation.
+   
 ****
