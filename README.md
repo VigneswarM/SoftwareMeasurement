@@ -1,9 +1,9 @@
 # SOEN6611 - Team E(Summer'19) 
 # Software Measurement Project
 
-**The purpose of this project is to calculate the metrics for selected open source projects and find correlation between them.**
+**The purpose of this project is to calculate the metrics for selected open source projects and find a correlation between them.**
 
-## Professor : Jinqiu Yang
+## Professor: Jinqiu Yang
 
 ## Team Members
 
@@ -86,7 +86,7 @@ Report will be generated at target/site/jacoco/*.
 ## Mutation Score Calculation( Metric 3)
 - [x] How we implemented in our project?
 
-We perfomed the calculation of this metric using [PIT](http://pitest.org/).It is fast, easy to use, actively developed and supported.The reports produced by PIT are in an easy to read format combining line coverage and mutation coverage information.
+We performed the calculation of this metric using [PIT](http://pitest.org/). It is fast, easy to use, actively developed and supported. The reports produced by PIT are in an easy to read format combining line coverage and mutation coverage information.
 
 To perform pit, we should add the below dependency plugin to pom.xml 
 ```
@@ -110,7 +110,7 @@ Report will be generated at target/pit-reports/*.
 ## Code Churn Calculation( Metric 5)
 - [x] How we implemented in our project?
 
-Two versions of project need to be considered along with all the commits in between the versions. We used [cloc](http://cloc.sourceforge.net/#Overview) to count the lines of code and performed the below calculations sequentialy to obtain results
+Two versions of the project need to be considered along with all the commits in between the versions. We used [cloc](http://cloc.sourceforge.net/#Overview) to count the lines of code and performed the below calculations sequentially to obtain results
 
 
  - Firstly, execute command ``` cloc-1.64.exe proj_V1 ``` , this will provide loc of V1(Version 1)
@@ -119,18 +119,18 @@ Two versions of project need to be considered along with all the commits in betw
  - Calcualte LOC(Modified+Added) for all commits between versions and for version2 as well.
  - Relative Churned Code = Summate all calculated LOC's(Modified+Added)/ version2 LOC
  
- **Please refer the documentation with screen shots attached** [Click Here](Metrics%20Calculations/Metric%205%20Calculation%20with%20Screenshots.docx)
+ **Please refer the documentation with screenshots attached** [Click Here](Metrics%20Calculations/Metric%205%20Calculation%20with%20Screenshots.docx)
  
-_Note_: We have only considered added & modified lines during calculation of churned LOC(Deleted lines generally have less impact on the evolution of the system).May be taking deleted lines of code into account seperately provides a better view of the actual change that took place.
+_Note_: We have only considered added & modified lines during the calculation of churned LOC(Deleted lines generally have less impact on the evolution of the system).Maybe taking deleted lines of code into account separately provides a better view of the actual change that took place.
 
 ****
 
 ## Post Defect Density Calculation( Metric 6)
 - [x] How we implemented in our project?
 
-Inorder to calculate this metric, defects after project release need to be counted from issue tracker. In our case JIRA is the issue tracker
+In order to calculate this metric, defects after project release need to be counted from the issue tracker. In our case, JIRA is the issue tracker
  - Firstly, should navigate to issue tracker page. (Project main page --> Issue tracking --> All Apache Bugs)
- - Click on Advanced link, enter query ``` porject =xxx and afectedVersion = xx ORDER BY key desc ```
+ - Click on Advanced link, enter query ``` project =xxx and affected version = xx ORDER BY key desc ```
  - Take count of bugs [Refer to this image](Metrics%20Calculations/Metric%206%20Screenshot.JPG)
  - Defect Density = No.of Bugs/ Size of release 
  
@@ -141,8 +141,8 @@ Inorder to calculate this metric, defects after project release need to be count
 ## Correlation
 - [x] How we implemented in our project?
 
-Inorder to calculate the correlation between metrics,we have used open source software [Project Jupyter](https://en.wikipedia.org/wiki/Project_Jupyter), which supports various languages like Julia, Python, R etc.
-   - Firstly, data files(.xls) are loaded to jupyter binder server.
+In order to calculate the correlation between the metrics, we have used open source software [Project Jupyter](https://en.wikipedia.org/wiki/Project_Jupyter), which supports various languages like Julia, Python, R etc.
+   - Firstly, data files(.csv) are loaded to jupyter binder server.
    - Data file consists of the metrics data for which the correlation is being performed. Eg: For correlation of coverage and                complexity, the excel file contains three mandatory columns namely Statement coverage, Branch coverage & Code complexity
    - Correlation is calculated using spearman method. Following are the commands used to perform the calculation
    - ``` df = pd.read_csv('input.csv', error_bad_lines=False)```  _Loading input_
@@ -150,6 +150,6 @@ Inorder to calculate the correlation between metrics,we have used open source so
    - ``` df.corr(method ='spearman') ```   _Here df is the data frame_
    - ```df[['CodeComplexity','StatementCoverage']].corr(method ='spearman')``` _Statement & Code coverage are columns containing                data_
    
- Similarly, results are caluclated for all other correlations. For mutation, input data is not as organised as coverage data, so formatting techniques are implemented in jupyter. All the calculations and results are uploaded in Metrics Calculations -->  Project Name --> Coorelation.
+ Similarly, results are calculated for all other correlations. For mutation, input data is not as organised as coverage data, so formatting techniques are implemented in jupyter. All the calculations and results are uploaded in Metrics Calculations -->  Project Name --> Correlation.
    
 ****
